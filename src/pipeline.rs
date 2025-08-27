@@ -109,7 +109,7 @@ impl Plugin for AtmospherePipelinePlugin {
                 depth_or_array_layers: 6,
             },
             TextureDimension::D2,
-            &[0; 4 * 4],
+            &[0; 2 * 4],
             TextureFormat::Rgba16Float,
             RenderAssetUsages::default(),
         );
@@ -340,10 +340,10 @@ fn prepare_atmosphere_resources(
         atmosphere_image.array_view = Some(view);
         update();
         if let Some(image) = gpu_images.get(&atmosphere_image.handle) {
-        trace!(
-            "Created new 2D array texture view from atmosphere texture of size {:?}",
-            image.size
-        );
+            trace!(
+                "Created new 2D array texture view from atmosphere texture of size {:?}",
+                image.size
+            );
         } else {
             trace!(
                 "Failed to find gpu_image for {:?}",

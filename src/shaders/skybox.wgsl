@@ -21,7 +21,7 @@ var sky_sampler: sampler;
 fn fragment(
     in: VertexOutput
 ) -> @location(0) vec4<f32> {
-    let color = textureSample(sky_texture, sky_sampler, in.world_normal).xyz;
+    let color = mix(textureSample(sky_texture, sky_sampler, in.world_normal).xyz, vec3<f32>(0.6, 0.0, 0.0), 0.2);
 #ifdef DITHER
     return vec4<f32>(color + dither(in.position.xy), 1f);
 #else
